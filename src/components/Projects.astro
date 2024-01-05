@@ -1,0 +1,56 @@
+---
+import Html from "./icons/Html.astro";
+import CSS from "./icons/Css.astro";
+
+const TAGS = {
+  HTML: {
+    name: "HTML5",
+    class: "bg-orange-500 text-white",
+    icon: Html,
+  },
+
+  CSS: {
+    name: "CSS3",
+    class: "bg-blue-500 text-white",
+    icon: CSS,
+  },
+};
+
+const PROJECTS = [
+  {
+    title: "Proyecto 1",
+    descripcion:
+      "Página creada con HTML y CSS que tiene como principal función publicar productos o pagina web personal.",
+    link: "https://monumental-lily-6f5c1b.netlify.app/",
+    github: "#",
+    image: "/img/paginawebproyecto.png",
+    tags: [TAGS.HTML, TAGS.CSS],
+  },
+];
+---
+
+{
+  PROJECTS.map(({ title, descripcion, tags, image }) => (
+    <article>
+      <h3 class="text-2xl font-semibold text-yellow-200 mb-2">{title}</h3>
+      <p class="text-lg mb-4 text-pretty">{descripcion}</p>
+      <ul class="flex gap-x-4 flex-row mb-2">
+        {tags.map((tag) => (
+          <li>
+            <span
+              class={`flex gap-x-2 rounded-full text-sm ${tag.class} py-2 px-2`}
+            >
+              <tag.icon class="size-4" />
+              {tag.name}
+            </span>
+          </li>
+        ))}
+      </ul>
+      <img
+        class="rounded shadow-2xl shadow-white/10 mt-4 mb-4"
+        src={image}
+        alt={title}
+      />
+    </article>
+  ))
+}
